@@ -23,16 +23,6 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 
-	@GetMapping("/getemployeebyid/{empid}")
-	public Optional<Employee> getEmployeeById(@PathVariable("empid") int empid) {
-		return employeeService.getEmployeeById(empid);
-	}
-
-	@GetMapping("getallemployee")
-	public List<Employee> getAllEmployee() {
-		return employeeService.getAllEmployee();
-	}
-
 	@PostMapping("/saveemployee")
 	public ResponseEntity<String> saveEmployee(@RequestBody Employee employee) {
 		employeeService.saveEmployee(employee);
@@ -43,6 +33,16 @@ public class EmployeeController {
 	public ResponseEntity<String> saveEmployeeList(@RequestBody List<Employee> employees) {
 		employeeService.saveEmployeeList(employees);
 		return new ResponseEntity<String>("data save successfully", HttpStatus.OK);
+	}
+
+	@GetMapping("/getemployeebyid/{empid}")
+	public Optional<Employee> getEmployeeById(@PathVariable("empid") int empid) {
+		return employeeService.getEmployeeById(empid);
+	}
+
+	@GetMapping("getallemployee")
+	public List<Employee> getAllEmployee() {
+		return employeeService.getAllEmployee();
 	}
 
 	@PutMapping("/updateemployee/{empid}")
